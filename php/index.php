@@ -6,6 +6,7 @@ require __DIR__ . '/controllers/AlunniController.php';
 require __DIR__ . '/controllers/CertificazioniController.php';
 
 $app = AppFactory::create();
+$app->addErrorMiddleWare(true,true,true);
 
 //alunni method and endpoints
 $app->get('/alunni', "AlunniController:index");
@@ -22,48 +23,24 @@ $app->delete('/alunni/{id:\d+}', "AlunniController:delete");
 //certificazioni methods and endpoints
 
 
-$app->get('/alunni/{idAl}/certificazioni', "CertificazioniController:index"); // tutte le certificazioni di uno studente
+$app->get('/alunni/{idAl:\d+}/certificazioni', "CertificazioniController:index"); // tutte le certificazioni di uno studente
 
 
-$app->get('/alunni/{idAl}/certificazioni/{id:\d+}', "CertificazioniController:show");// una certificazione di un certo utente
-
-
-
-$app->post('/alunni/{idAl}/certificazioni', "CertificazioniController:create"); // aggiunge una certificazione a un certo studente
+$app->get('/alunni/{idAl:\d+}/certificazioni/{id:\d+}', "CertificazioniController:show");// una certificazione di un certo utente
 
 
 
-$app->put('/alunni/{idAl}/certificazioni/{id}', "CertificazioniController:update"); // update di una certificazione di un certo alunno 
+$app->post('/alunni/{idAl:\d+}/certificazioni', "CertificazioniController:create"); // aggiunge una certificazione a un certo studente
 
 
-$app->delete('/alunni/{idAl}/certificazioni/{id}', "CertificazioniController:delete"); // delete di una certificazione di un certo alunno 
+
+$app->put('/alunni/{idAl:\d+}/certificazioni/{id:\d+}', "CertificazioniController:update"); // update di una certificazione di un certo alunno 
+
+
+$app->delete('/alunni/{idAl:\d+}/certificazioni/{id:\d+}', "CertificazioniController:delete"); // delete di una certificazione di un certo alunno 
 
 
 $app->run();
-
-
-
-/*
-* Recuperare tutti gli alunni.
-* Recuperare un singolo alunno tramite id.
-* Creare un nuovo alunno.
-* Aggiornare le informazioni di un alunno.
-* Eliminare un alunno.
-
-
-* Recuperare tutte le certificazioni di un alunno.
-* Recuperare una singola certificazione tramite id.
-* Creare un nuova certificazione per un alunno.
-* Aggiornare le informazioni di una certificazione.
-* Eliminare una certificazione.
-
-
-
-
-Implementare controlli per gestire errori comuni (es. alunno non trovato, dati mancanti o errati).
-(Opzionale) Assicurarsi che i dati inviati siano validi prima di inserirli nel database.
-(Opzionale) Aggiungere la possibilità di filtrare e ordinare i risultati nelle richieste GET.
-
 
 
 //--PER IL CREATE alunno
@@ -76,7 +53,7 @@ Implementare controlli per gestire errori comuni (es. alunno non trovato, dati m
 
 //--PER L'UPDATE alunno 
 //curl -X PUT http://localhost:8080/alunni/3 -H "Content-Type: application/json" -d '{"nome": "GUIDO", "cognome": "LAUTO"}'
-*/
+
 
 
 /*per create certificazione
