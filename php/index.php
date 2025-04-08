@@ -19,25 +19,24 @@ $app->put('/alunni/{id:\d+}', "AlunniController:update");
 $app->delete('/alunni/{id:\d+}', "AlunniController:delete");
 
 
-//certificazioni methos and endpoints
+//certificazioni methods and endpoints
 
 
-// Add these routes after the alunni routes and before $app->run()
+$app->get('/alunni/{idAl}/certificazioni', "CertificazioniController:index"); // tutte le certificazioni di uno studente
 
 
-$app->get('/certificazioni', "CertificazioniController:index");
+$app->get('/alunni/{idAl}/certificazioni/{id:\d+}', "CertificazioniController:show");// una certificazione di un certo utente
 
 
-$app->get('/certificazioni/{id:\d+}', "CertificazioniController:show");
+
+$app->post('/alunni/{idAl}/certificazioni', "CertificazioniController:create"); // aggiunge una certificazione a un certo studente
 
 
-$app->post('/certificazioni', "CertificazioniController:create");
+
+$app->put('/alunni/{idAl}/certificazioni/{id}', "CertificazioniController:update"); // update di una certificazione di un certo alunno 
 
 
-$app->put('/certificazioni/{id:\d+}', "CertificazioniController:update");
-
-
-$app->delete('/certificazioni/{id:\d+}', "CertificazioniController:delete");
+$app->delete('/alunni/{idAl}/certificazioni/{id}', "CertificazioniController:delete"); // delete di una certificazione di un certo alunno 
 
 
 $app->run();
@@ -67,12 +66,19 @@ Implementare controlli per gestire errori comuni (es. alunno non trovato, dati m
 
 
 
-//--PER IL CREATE
+//--PER IL CREATE alunno
 //curl -X POST http://localhost:8080/alunni -H "Content-Type: application/json" -d '{"nome": "guido", "cognome": "lauto"}'
 
-//--PER IL DELETE
-//curl -X POST http://localhost:8080/alunni/5
 
-//--PER L'UPDATE
+
+//curl -X DELETE della certificazione http://localhost:8080/alunni/1/certificazioni/1 
+
+
+//--PER L'UPDATE alunno 
 //curl -X PUT http://localhost:8080/alunni/3 -H "Content-Type: application/json" -d '{"nome": "GUIDO", "cognome": "LAUTO"}'
+*/
+
+
+/*per create certificazione
+curl -X POST http://localhost:8080/alunni/1/certificazioni -H "Content-Type: appplication/json" -d '{"titolo": "maialona", "votazione":  "70", "ente": "roar"}'
 */
