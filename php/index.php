@@ -48,14 +48,24 @@ $app->run();
 
 
 
-//curl -X DELETE della certificazione http://localhost:8080/alunni/1/certificazioni/1 
+//curl -X DELETE http://localhost:8080/alunni/1/certificazioni/1 
 
 
 //--PER L'UPDATE alunno 
 //curl -X PUT http://localhost:8080/alunni/3 -H "Content-Type: application/json" -d '{"nome": "GUIDO", "cognome": "LAUTO"}'
 
-
+//-- Per update certificazione
+/*curl -X PUT http://localhost:8080/alunni/1/certificazioni/2 
+  -H "Content-Type: application/json" 
+  -d '{"titolo": "Certificazione Laravel", "votazione": "95", "ente": "Boolean"}'
+*/
 
 /*per create certificazione
 curl -X POST http://localhost:8080/alunni/1/certificazioni -H "Content-Type: appplication/json" -d '{"titolo": "maialona", "votazione":  "70", "ente": "roar"}'
 */
+
+/*per eliminazione certificazione
+    curl -X DELETE http://localhost:8080/alunni/1/certificazioni/2
+*/
+
+
